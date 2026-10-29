@@ -155,8 +155,12 @@ def juntar_codex(home: Path, trocas: dict, backup: Path) -> None:
         texto = render(modelo.read_text(encoding="utf-8"), trocas)
         texto = texto[texto.index("[permissions."):] if "[permissions." in texto else ""
         # Topo: o perfil substitui sandbox_mode (os dois juntos não podem).
+        # Só no topo (antes da primeira [seção]); perfis do usuário ficam como estão.
+        corte = re.search(r"(?m)^\[", atual)
+        corte = corte.start() if corte else len(atual)
         atual = re.sub(r"(?m)^sandbox_mode\s*=.*$",
-                       lambda m: "# (desligado pelo /auto: usa default_permissions) " + m.group(0), atual)
+                       lambda m: "# (desligado pelo /auto: usa default_permissions) " + m.group(0),
+                       atual[:corte]) + atual[corte:]
         topo = ""
         if not re.search(r"(?m)^default_permissions\s*=", atual):
             topo += 'default_permissions = "auto-leitura"\n'
