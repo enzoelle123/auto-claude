@@ -1,0 +1,254 @@
+{
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "MAX_MCP_OUTPUT_TOKENS": "15000"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/security-guidance/hooks/sg-python.sh\" \"{{HOME}}/.claude/security-guidance/hooks/ensure_agent_sdk.py\"",
+            "timeout": 180
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/security-guidance/hooks/sg-python.sh\" \"{{HOME}}/.claude/security-guidance/hooks/security_reminder_hook.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/security-guidance/hooks/sg-python.sh\" \"{{HOME}}/.claude/security-guidance/hooks/security_reminder_hook.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/security-guidance/hooks/sg-python.sh\" \"{{HOME}}/.claude/security-guidance/hooks/security_reminder_hook.py\"",
+            "if": "Bash(git commit:*)",
+            "asyncRewake": true,
+            "rewakeMessage": "Background security review of commit — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply:",
+            "rewakeSummary": "Commit security review found issues"
+          },
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/security-guidance/hooks/sg-python.sh\" \"{{HOME}}/.claude/security-guidance/hooks/security_reminder_hook.py\"",
+            "if": "Bash(git push:*)",
+            "asyncRewake": true,
+            "rewakeMessage": "Background security review of pushed commits not yet reviewed — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply:",
+            "rewakeSummary": "Push security review found issues"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{HOME}}/.claude/security-guidance/hooks/sg-python.sh\" \"{{HOME}}/.claude/security-guidance/hooks/security_reminder_hook.py\"",
+            "asyncRewake": true,
+            "rewakeMessage": "Background security review feedback — address or acknowledge the findings below, then continue with the user's original request or continue waiting for their reply. This is supplementary, not a replacement for your previous response:",
+            "rewakeSummary": "Background security review found issues"
+          }
+        ]
+      }
+    ]
+  },
+  "enableWorkflows": true,
+  "bashOutputMaxChars": 15000,
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "ecc@ecc": true,
+    "claude-mem@thedotmack": true,
+    "marketing-skills@claude-code-skills": true,
+    "c-level-skills@claude-code-skills": true,
+    "c-level-agents@claude-code-skills": true,
+    "general-counsel-advisor@claude-code-skills": true,
+    "arquiteto-de-empresa@claude-code-skills": true,
+    "chief-data-officer-advisor@claude-code-skills": true,
+    "vpe-advisor@claude-code-skills": true,
+    "chief-customer-officer-advisor@claude-code-skills": true,
+    "chief-ai-officer-advisor@claude-code-skills": true,
+    "engineering-advanced-skills@claude-code-skills": true,
+    "engineering-skills@claude-code-skills": true,
+    "ra-qm-skills@claude-code-skills": true,
+    "product-skills@claude-code-skills": true,
+    "pm-skills@claude-code-skills": true,
+    "business-growth-skills@claude-code-skills": true,
+    "finance-skills@claude-code-skills": true,
+    "pw@claude-code-skills": true,
+    "self-improving-agent@claude-code-skills": true,
+    "autoresearch-agent@claude-code-skills": true,
+    "google-workspace-cli@claude-code-skills": true,
+    "code-to-prd@claude-code-skills": true,
+    "agenthub@claude-code-skills": true,
+    "a11y-audit@claude-code-skills": true,
+    "executive-mentor@claude-code-skills": true,
+    "docker-development@claude-code-skills": true,
+    "helm-chart-builder@claude-code-skills": true,
+    "terraform-patterns@claude-code-skills": true,
+    "research-summarizer@claude-code-skills": true,
+    "code-tour@claude-code-skills": true,
+    "demo-video@claude-code-skills": true,
+    "data-quality-auditor@claude-code-skills": true,
+    "statistical-analyst@claude-code-skills": true,
+    "apple-hig-expert@claude-code-skills": true,
+    "llm-wiki@claude-code-skills": true,
+    "karpathy-coder@claude-code-skills": true,
+    "feature-flags-architect@claude-code-skills": true,
+    "kubernetes-operator@claude-code-skills": true,
+    "chaos-engineering@claude-code-skills": true,
+    "slo-architect@claude-code-skills": true,
+    "write-a-skill@claude-code-skills": true,
+    "book-to-skill@claude-code-skills": true,
+    "workflow-builder@claude-code-skills": true,
+    "caveman@claude-code-skills": true,
+    "zero-hallucination-coder@claude-code-skills": true,
+    "agent-harness@claude-code-skills": true,
+    "memory-engineering@claude-code-skills": true,
+    "skill-doctor@claude-code-skills": true,
+    "grill-me@claude-code-skills": true,
+    "handoff-engineering@claude-code-skills": true,
+    "agile-product-owner@claude-code-skills": true,
+    "capture-skill@claude-code-skills": true,
+    "email-pair@claude-code-skills": true,
+    "reflect-skill@claude-code-skills": true,
+    "handoff-productivity@claude-code-skills": true,
+    "andreessen@claude-code-skills": true,
+    "roast@claude-code-skills": true,
+    "fable-goal@claude-code-skills": true,
+    "weekly-review@claude-code-skills": true,
+    "deep-work@claude-code-skills": true,
+    "meetings@claude-code-skills": true,
+    "swedish-mentor@claude-code-skills": true,
+    "landing@claude-code-skills": true,
+    "linkedin@claude-code-skills": true,
+    "pulse@claude-code-skills": true,
+    "deep-research@claude-code-skills": true,
+    "litreview@claude-code-skills": true,
+    "grants@claude-code-skills": true,
+    "dossier@claude-code-skills": true,
+    "patent@claude-code-skills": true,
+    "syllabus@claude-code-skills": true,
+    "notebooklm@claude-code-skills": true,
+    "research-orchestrator@claude-code-skills": true,
+    "deepread@claude-code-skills": true,
+    "aeo@claude-code-skills": true,
+    "security-guidance@claude-code-skills": true,
+    "skillopt-sleep@claude-code-skills": true,
+    "business-operations-skills@claude-code-skills": true,
+    "commercial-skills@claude-code-skills": true,
+    "universal-scraping-architect@claude-code-skills": true,
+    "research-ops-skills@claude-code-skills": true,
+    "markdown-html-skills@claude-code-skills": true,
+    "youtube-full@claude-code-skills": true,
+    "compliance-os@claude-code-skills": true,
+    "snowflake-development@claude-code-skills": true,
+    "behuman@claude-code-skills": true,
+    "claude-coach@claude-code-skills": true,
+    "grill-with-docs@claude-code-skills": true,
+    "llm-cost-optimizer@claude-code-skills": true,
+    "prompt-governance@claude-code-skills": true,
+    "business-investment-advisor@claude-code-skills": true,
+    "video-content-strategist@claude-code-skills": true,
+    "compliance-team-eu-ai-act@claude-code-skills": true,
+    "compliance-team-iso42001@claude-code-skills": true,
+    "collab-proof@claude-code-skills": true,
+    "human-gate@claude-code-skills": true,
+    "agent-launcher-skills@claude-code-skills": true,
+    "agent-memory@claude-code-skills": true,
+    "spinning-up-deep-rl@claude-code-skills": true,
+    "deep-learning-book@claude-code-skills": true,
+    "andrej-karpathy-skills@karpathy-skills": true,
+    "watch@claude-video": true,
+    "text-to-cad@earthtojake": true,
+    "universal-modder@universal-modder": true,
+    "beatdesign@beatdesign": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "ecc": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/ECC"
+      }
+    },
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
+    },
+    "claude-code-skills": {
+      "source": {
+        "source": "github",
+        "repo": "alirezarezvani/claude-skills"
+      }
+    },
+    "karpathy-skills": {
+      "source": {
+        "source": "directory",
+        "path": "{{HOME_WIN2}}\\claude-repos\\vibecoding\\andrej-karpathy-skills"
+      }
+    },
+    "claude-video": {
+      "source": {
+        "source": "directory",
+        "path": "{{HOME_WIN2}}\\claude-repos\\video\\claude-video"
+      }
+    },
+    "earthtojake": {
+      "source": {
+        "source": "github",
+        "repo": "earthtojake/text-to-cad",
+        "ref": "latest"
+      }
+    },
+    "universal-modder": {
+      "source": {
+        "source": "github",
+        "repo": "rehan-remade/universal-modder"
+      }
+    },
+    "beatdesign": {
+      "source": {
+        "source": "github",
+        "repo": "BeatAPI/BeatDesign"
+      }
+    }
+  },
+  "promptSuggestionEnabled": false,
+  "pluginConfigs": {
+    "ecc@ecc": {
+      "options": {
+        "hook_profile": "minimal",
+        "hooks_enabled": true
+      }
+    }
+  },
+  "skipWorkflowUsageWarning": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
+}

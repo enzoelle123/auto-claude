@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0f1a">
+  <title>Dashboard · /auto</title>
+  <link rel="stylesheet" href="/dash.css">
+</head>
+<body>
+  <header class="topo">
+    <nav aria-label="Navegação"><a id="andar" href="/">← Andar</a><a href="/">← Prédio</a></nav>
+    <div class="marca"><span id="icone" class="quadro" aria-hidden="true">▦</span><div><small id="tema-nome">/auto · Ambiente visual</small><h1 id="titulo">Carregando projeto…</h1></div></div>
+    <span id="status" class="chip">Conectando</span>
+    <button id="editar" hidden>Editar tema</button>
+  </header>
+  <main>
+    <p id="aviso" role="status" aria-live="polite">Verificando sessão…</p>
+    <section id="sem-tema" class="sem-tema" hidden><span class="quadro" aria-hidden="true">✦</span><h2>Este andar ainda não tem ambiente visual</h2><p>Peça ao /auto um ambiente com as cores e os painéis deste projeto.</p><button id="criar">Criar ambiente visual</button></section>
+    <p id="resumo" class="muted"></p>
+    <section id="bi" class="bi" aria-label="Visão BI do projeto" hidden><h2>Visão BI</h2></section>
+    <div id="paineis" class="grade" aria-label="Painéis do projeto"></div>
+    <p id="ao-vivo" class="muted" role="status"></p>
+  </main>
+  <aside id="editor" class="editor" aria-labelledby="editor-titulo" hidden>
+    <div class="editor-topo"><h2 id="editor-titulo">Editar tema</h2><button id="fechar-editor">Fechar</button></div>
+    <p class="muted">Prévia imediata. As alterações ficam no projeto ao salvar.</p>
+    <form id="form-tema">
+      <div id="campos-tema"></div>
+      <fieldset><legend>Paleta e andar</legend><div id="cores" class="cores"></div></fieldset>
+      <fieldset><legend>Decoração · até 6 itens</legend><div id="decoracao" class="decoracao"></div></fieldset>
+      <fieldset><legend>Painéis · até 16 ativos</legend><p class="muted">Ligue, renomeie e ordene os painéis.</p><div id="editor-paineis"></div></fieldset>
+      <p id="editor-aviso" role="status" aria-live="polite"></p>
+      <div class="acoes"><button type="submit" id="salvar">Salvar</button><button type="button" id="desfazer">Desfazer última</button><button type="button" id="cancelar">Cancelar alterações</button><button type="button" id="pedir">Pedir ao Claude</button></div>
+    </form>
+  </aside>
+  <script type="module" src="/dash.js"></script>
+</body>
+</html>

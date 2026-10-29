@@ -1,0 +1,3 @@
+Arquivos grandes demais para o git (voltam pelo kit):
+skills/officecli/assets/ppt-process.webp (6 MB)
+skills/officecli/examples/ppt/3d-model.pptx (34 MB)

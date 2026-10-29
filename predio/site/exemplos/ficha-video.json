@@ -1,0 +1,40 @@
+{
+  "gerado": "2026-10-28T12:00:00-03:00",
+  "pasta": "exemplo-video",
+  "titulo": "Estúdio de vídeos · projeto de exemplo",
+  "resumo": "Dados inteiramente fictícios para testar os painéis e o editor do /auto.",
+  "status": "Em produção",
+  "setores": {"diretoria": "feito", "pesquisa": "feito", "criacao": "ativo", "producao": "ativo", "qualidade": "pendente", "ferramentas": "feito", "documentacao": "pendente"},
+  "kpis": [
+    {"rotulo": "Vídeos prontos", "valor": 8, "meta": 12, "tom": "ok"},
+    {"rotulo": "Publicados", "valor": 5, "meta": 7},
+    {"rotulo": "Na fila", "valor": 3, "tom": "alerta"},
+    {"rotulo": "Próximo horário", "valor": "18h30"}
+  ],
+  "etapas": [
+    {"nome": "Roteiro / gancho", "itens": [{"titulo": "O mistério das marés", "status": "Em revisão", "detalhe": "Abrir com uma pergunta em 3 segundos."}]},
+    {"nome": "Narração", "itens": [{"titulo": "A luz das estrelas", "status": "Em produção"}]},
+    {"nome": "Edição", "itens": [{"titulo": "Por dentro de um vulcão", "status": "Em produção"}]},
+    {"nome": "Revisão", "itens": []},
+    {"nome": "Agendado", "itens": [{"titulo": "Um oceano invisível", "status": "18h30"}]},
+    {"nome": "Postado", "itens": [{"titulo": "O planeta azul", "status": "Concluído"}]}
+  ],
+  "criterios": [{"texto": "Gancho claro nos primeiros 3 segundos", "feito": true}, {"texto": "Legendas revisadas", "feito": true}, {"texto": "Áudio sem distorção", "feito": true}, {"texto": "Revisão final do Diretor", "feito": false}],
+  "pendencias": ["Aprovar a thumbnail do próximo vídeo"],
+  "entregas": [{"nome": "Thumbnail · Um oceano invisível", "caminho": "entregas/oceano-thumb.svg", "tipo": "imagem", "tamanho": 282, "data": "2026-10-28T10:00:00-03:00", "miniatura": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23151a28'/%3E%3Ccircle cx='480' cy='180' r='110' fill='%2325f4ee'/%3E%3Ctext x='40' y='140' fill='%23eef1fa' font-size='36'%3EUM OCEANO%3C/text%3E%3Ctext x='40' y='190' fill='%23ff3d3d' font-size='36'%3EINVISÍVEL%3C/text%3E%3C/svg%3E"}],
+  "decisoes": [{"titulo": "Vídeos entre 30 e 45 segundos", "detalhe": "Uma ideia por vídeo, com legendas grandes.", "responsavel": "Diretor", "data": "2026-10-27T15:00:00-03:00"}],
+  "reunioes": [],
+  "pesquisa": [{"titulo": "Perguntas visuais aumentam a curiosidade", "resumo": "Hipótese fictícia para testar o painel de pesquisa.", "fonte": "Pesquisa de demonstração"}],
+  "concorrentes": [{"nome": "Canal fictício Ciência Curta", "detalhe": "Referência de formato; sem métricas reais."}],
+  "ferramentas": [{"hora": "2026-10-28T11:00:00-03:00", "setor": "producao", "tipo": "terminal", "nome": "Editor de vídeo", "motivo": "Montagem do corte de demonstração"}],
+  "linha_tempo": [{"hora": "2026-10-28T09:00:00-03:00", "texto": "Roteiros aprovados"}, {"hora": "2026-10-28T11:00:00-03:00", "texto": "Primeiro corte pronto para revisão"}],
+  "externo": {"central": {"origem": "Exemplo fictício", "canais": [{"nome": "Ciência de Bolso", "plataforma": "YouTube", "postados": 5, "pendentes": 3, "erros": 0, "reenvios": 0, "proximo_horario": "18h30"}]}},
+  "extra": {
+    "agenda": [{"titulo": "Um oceano invisível", "data": "2026-10-28T18:30:00-03:00", "status": "Agendado"}, {"titulo": "Por dentro de um vulcão", "data": "2026-10-29T18:30:00-03:00", "status": "Planejado"}],
+    "titulos": [{"titulo": "Você sabia que existe um oceano escondido?", "detalhe": "Thumbnail com duas linhas e um foco visual."}],
+    "comentarios": [],
+    "virais": [{"titulo": "O planeta azul", "gancho": "Pergunta direta", "duracao": "35 s", "views": 12000}, {"titulo": "O centro da Terra", "gancho": "Curiosidade", "duracao": "42 s", "views": 8500}],
+    "grafico": {"tipo": "barras", "pontos": [{"rotulo": "Seg", "valor": 1}, {"rotulo": "Ter", "valor": 2}, {"rotulo": "Qua", "valor": 2}, {"rotulo": "Qui", "valor": 0}, {"rotulo": "Sex", "valor": 0}]},
+    "evolucao": {"tipo": "linha", "pontos": [{"rotulo": "Seg", "valor": 1000}, {"rotulo": "Ter", "valor": 3500}, {"rotulo": "Qua", "valor": 8200}]}
+  }
+}

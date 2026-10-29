@@ -1,0 +1,204 @@
+{
+  "chrome-devtools": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "chrome-devtools-mcp@latest"
+    ]
+  },
+  "playwright": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "@playwright/mcp@latest"
+    ]
+  },
+  "serena": {
+    "command": "{{HOME_WIN2}}\\.local\\bin\\serena.exe",
+    "args": [
+      "start-mcp-server",
+      "--context",
+      "ide-assistant",
+      "--enable-web-dashboard",
+      "false"
+    ]
+  },
+  "semgrep": {
+    "command": "{{HOME_WIN2}}\\AppData\\Roaming\\uv\\tools\\semgrep-mcp\\Scripts\\semgrep-mcp.exe",
+    "args": [],
+    "env": {}
+  },
+  "n8n": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "n8n-mcp"
+    ],
+    "env": {
+      "MCP_MODE": "stdio",
+      "LOG_LEVEL": "error",
+      "DISABLE_CONSOLE_OUTPUT": "true"
+    }
+  },
+  "desktop-commander": {
+    "command": "desktop-commander",
+    "args": []
+  },
+  "context7": {
+    "type": "http",
+    "url": "https://mcp.context7.com/mcp"
+  },
+  "github": {
+    "type": "http",
+    "url": "https://api.githubcopilot.com/mcp/"
+  },
+  "supabase": {
+    "type": "http",
+    "url": "https://mcp.supabase.com/mcp"
+  },
+  "vercel": {
+    "type": "http",
+    "url": "https://mcp.vercel.com"
+  },
+  "sentry": {
+    "type": "http",
+    "url": "https://mcp.sentry.dev/mcp"
+  },
+  "exa": {
+    "type": "http",
+    "url": "https://mcp.exa.ai/mcp"
+  },
+  "trivy": {
+    "command": "{{HOME_WIN2}}\\.local\\bin\\trivy.exe",
+    "args": [
+      "mcp"
+    ],
+    "env": {}
+  },
+  "osv-scanner": {
+    "command": "{{HOME_WIN2}}\\.local\\bin\\osv-scanner.exe",
+    "args": [
+      "experimental-mcp"
+    ]
+  },
+  "capcut": {
+    "type": "stdio",
+    "command": "node",
+    "args": [
+      "{{HOME}}/claude-repos/capcut/JmsLdrn__capcut-mcp/src/server.js"
+    ],
+    "env": {
+      "CAPCUT_DRAFTS_DIR": "{{HOME}}/AppData/Local/CapCut/User Data/Projects/com.lveditor.draft",
+      "CAPCUT_TEMPLATE_DRAFT": "modelo-texto"
+    }
+  },
+  "capcut-smartcut": {
+    "type": "stdio",
+    "command": "{{HOME}}/claude-repos/capcut/capcut-ai-editor/.venv/Scripts/python.exe",
+    "args": [
+      "-m",
+      "smartcut.server"
+    ],
+    "env": {
+      "CAPCUT_DRAFTS_DIR": "{{HOME}}/AppData/Local/CapCut/User Data/Projects/com.lveditor.draft"
+    }
+  },
+  "ffmpeg": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "ffmpeg-mcp"
+    ],
+    "env": {}
+  },
+  "rea": {
+    "command": "{{HOME_WIN2}}\\AppData\\Local\\Microsoft\\WinGet\\Packages\\OpenJS.NodeJS.LTS_Microsoft.Winget.Source_8wekyb3d8bbwe\\node-v24.19.0-win-x64\\node.exe",
+    "args": [
+      "{{HOME_WIN2}}\\AppData\\Local\\Microsoft\\WinGet\\Packages\\OpenJS.NodeJS.LTS_Microsoft.Winget.Source_8wekyb3d8bbwe\\node-v24.19.0-win-x64\\node_modules\\rea-agents\\scripts\\rea.mjs",
+      "mcp"
+    ]
+  },
+  "voicebox": {
+    "type": "http",
+    "url": "http://127.0.0.1:17493/mcp",
+    "headers": {
+      "X-Voicebox-Client-Id": "{{X_VOICEBOX_CLIENT_ID}}"
+    }
+  },
+  "voicestudio": {
+    "type": "http",
+    "url": "http://localhost:3900/mcp"
+  },
+  "designcraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\designcraft\\bin\\designcraft-0.8.0-windows-x64-portable\\designcraft-cli.exe",
+    "args": [
+      "mcp"
+    ],
+    "env": {}
+  },
+  "filmcraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\filmcraft\\bin\\filmcraft-0.8.0-windows-x64-portable\\filmcraft-cli.exe",
+    "args": [
+      "mcp"
+    ],
+    "env": {}
+  },
+  "figcraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\figcraft\\bin\\figcraft-0.6.0-windows-x64-portable\\figcraft-cli.exe",
+    "args": [
+      "mcp"
+    ],
+    "env": {}
+  },
+  "vectorcraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\vectorcraft\\bin\\vectorcraft-0.12.0-windows-x64-portable\\vectorcraft-cli.exe",
+    "args": [
+      "mcp",
+      "--automation-read-root",
+      "{{HOME_WIN2}}",
+      "--automation-write-root",
+      "{{HOME_WIN2}}\\auto-projetos"
+    ],
+    "env": {}
+  },
+  "photocraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\photocraft\\bin\\photocraft-0.9.0-windows-x64-portable\\photocraft-cli.exe",
+    "args": [
+      "mcp",
+      "--automation-read-root",
+      "{{HOME_WIN2}}",
+      "--automation-write-root",
+      "{{HOME_WIN2}}\\auto-projetos"
+    ],
+    "env": {}
+  },
+  "effectcraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\effectcraft\\bin\\effectcraft-0.10.0-windows-x64-portable\\effectcraft-cli.exe",
+    "args": [
+      "mcp",
+      "--automation-read-root",
+      "{{HOME_WIN2}}",
+      "--automation-write-root",
+      "{{HOME_WIN2}}\\auto-projetos"
+    ],
+    "env": {}
+  },
+  "pdfcraft": {
+    "type": "stdio",
+    "command": "{{HOME_WIN2}}\\claude-repos\\apps\\pdfcraft\\bin\\pdfcraft-0.8.0-windows-x64-portable\\pdfcraft-cli.exe",
+    "args": [
+      "mcp",
+      "--compact",
+      "--root",
+      "{{HOME_WIN2}}"
+    ],
+    "env": {}
+  }
+}

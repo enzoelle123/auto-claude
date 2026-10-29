@@ -1,0 +1,62 @@
+# Configurado pelo /auto em 2026-10-16.
+# Papel: revisor e ajudante do Claude. O Claude é o único que edita arquivos.
+# Perfil de permissões no lugar de sandbox_mode (a doc manda não combinar os dois).
+default_permissions = "auto-leitura"
+approval_policy = "never"           # modo não interativo: nunca pede aprovação, só lê
+cli_auth_credentials_store = "auto" # guarda o login no cofre do Windows quando disponível
+model_reasoning_effort = "medium"   # poupa a cota do ChatGPT; use -c model_reasoning_effort=high quando valer
+
+[windows]
+# Sem backend, o modo leitura bloqueia até comandos de leitura. Com MXC: lê (testado) e escrita dá "Access denied" (testado).
+sandbox = "mxc"
+
+[permissions.auto-leitura]
+description = "/auto: GPT só lê; segredos e credenciais negados"
+extends = ":read-only"
+
+[permissions.auto-leitura.filesystem]
+"{{HOME_WIN2}}\\.ssh" = "deny"
+"{{HOME_WIN2}}\\.codex\\auth.json" = "deny"
+"{{HOME_WIN2}}\\.claude\\.credentials.json" = "deny"
+"{{HOME_WIN2}}\\.muapi-venv" = "deny"
+glob_scan_max_depth = 6
+
+[permissions.auto-leitura.filesystem.":workspace_roots"]
+"**/.env" = "deny"
+"**/.env.*" = "deny"
+"**/*.pem" = "deny"
+"**/*.key" = "deny"
+"**/*.p12" = "deny"
+"**/*.pfx" = "deny"
+"**/id_rsa*" = "deny"
+"**/id_ed25519*" = "deny"
+"**/*credentials*" = "deny"
+"**/*secret*" = "deny"
+"**/.npmrc" = "deny"
+"**/.netrc" = "deny"
+
+[permissions.auto-escrita]
+description = "/auto: GPT cria arquivos so na pasta de trabalho (--cd); fora dela so le; segredos negados"
+extends = ":workspace"
+
+[permissions.auto-escrita.filesystem]
+"{{HOME_WIN2}}\\.ssh" = "deny"
+"{{HOME_WIN2}}\\.codex\\auth.json" = "deny"
+"{{HOME_WIN2}}\\.claude\\.credentials.json" = "deny"
+"{{HOME_WIN2}}\\.muapi-venv" = "deny"
+glob_scan_max_depth = 6
+
+[permissions.auto-escrita.filesystem.":workspace_roots"]
+"**/.env" = "deny"
+"**/.env.*" = "deny"
+"**/*.pem" = "deny"
+"**/*.key" = "deny"
+"**/*.p12" = "deny"
+"**/*.pfx" = "deny"
+"**/id_rsa*" = "deny"
+"**/id_ed25519*" = "deny"
+"**/*credentials*" = "deny"
+"**/*secret*" = "deny"
+"**/.npmrc" = "deny"
+"**/.netrc" = "deny"
+

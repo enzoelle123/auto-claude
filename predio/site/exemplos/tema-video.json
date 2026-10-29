@@ -1,0 +1,30 @@
+{
+  "versao": 1,
+  "nome": "Estúdio Dark · demonstração",
+  "assunto": "video",
+  "icone": "🎬",
+  "paleta": {
+    "fundo": "#0b0f1a", "painel": "#151a28", "parede": "#2a3149",
+    "texto": "#eef1fa", "fraco": "#9aa3c0", "destaque": "#ff3d3d",
+    "destaque2": "#25f4ee", "ok": "#3ddc84", "alerta": "#ffb020", "erro": "#ff5a6a"
+  },
+  "andar": {"piso": "#1b2030", "luz": "#ffd9a0", "fachada": "#ff3d3d", "decoracao": ["claquete", "refletor", "camera", "sofa"]},
+  "paineis": [
+    {"id": "resumo", "tipo": "kpis", "titulo": "A produção em números", "dados": "ficha.kpis"},
+    {"id": "producao", "tipo": "etapas", "titulo": "Muro da produção", "dados": "ficha.etapas"},
+    {"id": "agenda", "tipo": "calendario", "titulo": "Agenda de publicação", "dados": "ficha.extra.agenda"},
+    {"id": "entregas", "tipo": "galeria", "titulo": "Vídeos e thumbnails", "dados": "ficha.entregas"},
+    {"id": "titulos", "tipo": "lista", "titulo": "Títulos e ganchos", "dados": "ficha.extra.titulos"},
+    {"id": "virais", "tipo": "tabela", "titulo": "Análise de virais do nicho", "dados": "ficha.extra.virais"},
+    {"id": "validacao", "tipo": "checklist", "titulo": "Quadro de validação", "dados": "ficha.criterios"},
+    {"id": "equipe", "tipo": "equipe", "titulo": "Equipe ao vivo", "dados": "ficha.setores"},
+    {"id": "historico", "tipo": "linha_tempo", "titulo": "Diário do estúdio", "dados": "ficha.linha_tempo"},
+    {"id": "decisoes", "tipo": "decisoes", "titulo": "Decisões do Diretor", "dados": "ficha.decisoes"},
+    {"id": "pesquisa", "tipo": "pesquisa", "titulo": "Achados e concorrentes", "dados": "ficha.pesquisa"},
+    {"id": "grafico", "tipo": "grafico", "titulo": "Publicações na semana", "dados": "ficha.extra.grafico"},
+    {"id": "central", "tipo": "metrica_externa", "titulo": "Central dos Canais", "dados": "ficha.externo.central"},
+    {"id": "conversa", "tipo": "conversa", "titulo": "Converse com o Claude"},
+    {"id": "comentarios", "tipo": "lista", "titulo": "Comentários a responder", "dados": "ficha.extra.comentarios"},
+    {"id": "linha", "tipo": "grafico", "titulo": "Evolução de visualizações", "dados": "ficha.extra.evolucao"}
+  ]
+}
