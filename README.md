@@ -5,9 +5,10 @@ os funcionários, os ganchos, os plugins, os servidores MCP e o kit de skills, C
 
 ## Instalar num PC novo (o jeito fácil)
 
-Abra o Claude Code (ou outra IA com terminal) e peça:
+Só Windows por enquanto. O repositório é privado: antes, faça login no GitHub uma vez
+(`winget install GitHub.cli` e depois `gh auth login`). Então abra o Claude Code e peça:
 
-> Baixe e instale o /auto de https://github.com/enzoelle123/auto-claude
+> Baixe e instale o /auto: clone https://github.com/enzoelle123/auto-claude com o gh, leia o CLAUDE.md dele e siga.
 
 A IA clona o repositório, lê o `CLAUDE.md` e roda o instalador sozinha. No fim ela mostra
 só o que precisa de você: logins (ChatGPT/Codex, Claude, GitHub, Google) e o token do prédio.

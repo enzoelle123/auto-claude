@@ -5,9 +5,12 @@ os ganchos, as configurações de plugins e MCPs e a lista do kit de apps.
 
 ## Se o usuário pediu para "baixar", "instalar" ou "configurar" o /auto
 
-Faça sozinho, sem pedir confirmação a cada passo:
+Funciona no **Windows** (Mac/Linux ainda não). Faça sozinho, sem pedir confirmação a cada passo:
 
-1. Rode o instalador (Windows: Git Bash ou PowerShell; Mac/Linux: terminal), com tempo longo (o kit tem ~100 repositórios):
+0. Se o repositório ainda não está no PC: ele é **privado** (https://github.com/enzoelle123/auto-claude).
+   Rode `gh auth status`; se não estiver logado, peça ao dono para rodar `gh auth login` (o login é dele).
+   Depois: `gh repo clone enzoelle123/auto-claude "$HOME/Projetos/auto-claude" -- -c core.longpaths=true` e entre na pasta.
+1. Rode o instalador (Git Bash ou PowerShell), com tempo longo (o kit tem ~100 repositórios):
    ```bash
    python ferramentas/instalar.py
    ```

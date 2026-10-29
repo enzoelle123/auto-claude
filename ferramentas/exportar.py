@@ -33,7 +33,8 @@ def marcadores(texto: str) -> str:
     ]
     for antigo, novo in trocas:
         texto = re.sub(re.escape(antigo), lambda _m: novo, texto, flags=re.I)
-    return texto
+    # Endereço privado da Tailscale é dado pessoal.
+    return re.sub(r"[a-z0-9-]+\.tail[0-9a-f]+\.ts\.net", "<seu-pc>.<sua-tailnet>.ts.net", texto)
 
 
 def copiar_arquivo(origem: Path, destino: Path) -> None:

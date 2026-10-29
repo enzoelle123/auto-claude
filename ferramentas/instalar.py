@@ -98,7 +98,15 @@ def juntar_settings(home: Path, trocas: dict, backup: Path) -> None:
     alvo = home / ".claude" / "settings.json"
     atual = ler_json(alvo)
     for chave, valor in modelo.items():
-        if isinstance(valor, dict) and chave != "hooks":
+        if chave == "hooks":
+            # Ganchos de segurança entram em cada evento sem tirar os do usuário.
+            ganchos = atual.setdefault("hooks", {})
+            for evento, entradas in valor.items():
+                lista = ganchos.setdefault(evento, [])
+                for e in entradas:
+                    if e not in lista:
+                        lista.append(e)
+        elif isinstance(valor, dict):
             base = atual.setdefault(chave, {})
             for k, v in valor.items():
                 if k not in base and not tem_marcador(v):
@@ -146,9 +154,19 @@ def juntar_codex(home: Path, trocas: dict, backup: Path) -> None:
         # Do modelo, só os perfis: o topo do config atual é do dono.
         texto = render(modelo.read_text(encoding="utf-8"), trocas)
         texto = texto[texto.index("[permissions."):] if "[permissions." in texto else ""
-        if "default_permissions" not in atual:
-            atual = 'default_permissions = "auto-leitura"\n' + atual
-        novo = atual.rstrip() + "\n\n" + texto
+        # Topo: o perfil substitui sandbox_mode (os dois juntos não podem).
+        atual = re.sub(r"(?m)^sandbox_mode\s*=.*$",
+                       lambda m: "# (desligado pelo /auto: usa default_permissions) " + m.group(0), atual)
+        topo = ""
+        if not re.search(r"(?m)^default_permissions\s*=", atual):
+            topo += 'default_permissions = "auto-leitura"\n'
+        if not re.search(r"(?m)^approval_policy\s*=", atual):
+            topo += 'approval_policy = "never"\n'
+        novo = topo + atual.rstrip() + "\n\n"
+        if "[windows]" not in atual:
+            # Sem o sandbox mxc o Codex bloqueia até leitura no Windows.
+            novo += '[windows]\nsandbox = "mxc"\n\n'
+        novo += texto
     else:
         novo = render(modelo.read_text(encoding="utf-8"), trocas)
     alvo.parent.mkdir(parents=True, exist_ok=True)
@@ -213,6 +231,9 @@ def main() -> None:
     ap.add_argument("--teste", help="instala dentro desta pasta no lugar da pasta do usuário")
     a = ap.parse_args()
 
+    if os.name != "nt" and not a.teste:
+        sys.exit("O /auto foi feito para Windows (caminhos, .exe dos MCPs, sandbox do Codex). "
+                 "Em Mac/Linux ainda não é suportado.")
     home = Path(a.teste).resolve() if a.teste else Path.home()
     trocas = marcadores(home)
     data = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
