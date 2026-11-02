@@ -18,7 +18,7 @@ PADROES = {
     "token Vercel/Upstash atribuído": r"(?i)(UPSTASH_REDIS_REST_TOKEN|VERCEL_TOKEN|SENHA_SITE)\s*[=:]\s*['\"]?[A-Za-z0-9_\-]{16,}",
     "pasta do usuário sem marcador": re.escape(str(Path.home())).replace("\\\\", r"[\\/]+"),
 }
-IGNORAR = {"verificar.py"}
+IGNORAR = {"verificar.py", "montar_comercial.py", "publicar_comercial.py"}  # as regras citam o caminho de propósito
 
 
 def main() -> int:
