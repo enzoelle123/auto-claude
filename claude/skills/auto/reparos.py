@@ -454,7 +454,13 @@ def chroma(consertar):
 def verificar(consertar=True):
     linhas = []
     # rea depois do codex (reaproveita o Node achado por ele); python_uv antes do chroma (que usa o Python 3.13 do uv).
+    em_uso = {
+        codex: os.path.isdir(os.path.join(HOME, '.codex')),  # GPT é opcional: sem ~/.codex não instala nada
+        bun: os.path.isdir(MEM_DIR), claude_mem: os.path.isdir(MEM_DIR), chroma: os.path.isdir(MEM_DIR),
+    }
     for f in (codex, rea, bun, claude_mem, python_uv, chroma):
+        if not em_uso.get(f, True):
+            continue
         try:  # falha num reparo não impede os outros
             linhas.append(f(consertar))
         except Exception as e:

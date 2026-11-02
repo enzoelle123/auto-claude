@@ -115,6 +115,17 @@ def mais_recente(pedida=0):
     projetos.mostrar(pasta, d)
 
 
+def site_configurado():
+    """Sem endereço na ponte, o site do prédio não foi publicado: pula em silêncio (é opcional)."""
+    import json
+    try:
+        cfg = json.load(open(os.path.join(os.path.expanduser('~'), '.config', 'predio-ponte.json'),
+                             encoding='utf-8-sig'))
+    except (OSError, ValueError):
+        return False
+    return bool(str(cfg.get('url', '')).strip())
+
+
 def predio():
     """Regenera o prédio 3D e o mapa.md (memória compacta dos projetos) e diz onde estão."""
     import subprocess
@@ -138,7 +149,7 @@ def predio():
           f'  republique {os.path.join(SAIDA_PREDIO, "predio.html")} agora (Artifact, mesmo file_path, sem capabilities)')
     # Site da Vercel (https://predio-auto.vercel.app): manda o mapa e traz os pedidos feitos pelo celular.
     ponte = os.path.join(os.path.dirname(script), 'ponte.py')
-    if os.path.exists(ponte):
+    if os.path.exists(ponte) and site_configurado():
         try:
             # sincronizar.py manda mapa, temas e fichas dos dashboards (só o que mudou) e traz edições feitas no site.
             sinc = os.path.join(os.path.dirname(script), 'sincronizar.py')
@@ -164,6 +175,9 @@ def predio():
 def ler_texto():
     if sys.argv[1:] == ['-']:
         return sys.stdin.read().strip()
+    if len(sys.argv) == 3 and sys.argv[1] == '--arquivo':  # sem pipe: o PowerShell 5 estraga acentos no pipe
+        with open(sys.argv[2], encoding='utf-8-sig') as f:
+            return f.read().strip()
     return ' '.join(sys.argv[1:]).strip()
 
 
