@@ -54,7 +54,7 @@ def third_party(pacote: Path) -> None:
 def verificar(pacote: Path) -> list:
     achados = []
     for arq in pacote.rglob("*"):
-        if not arq.is_file() or ".git" in arq.parts or arq.name == "THIRD_PARTY.md":
+        if not arq.is_file() or ".git" in arq.parts or arq.name in ("THIRD_PARTY.md", "LICENSE.md"):  # a licença leva o nome do titular de propósito
             continue
         try:
             texto = arq.read_text(encoding="utf-8")
